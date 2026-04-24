@@ -1,4 +1,4 @@
-import { Personnage } from "./Personnage.js";
+import { Personnage } from "./personnage.js";
 
 export class Equipe {
   constructor(nom) {
@@ -103,8 +103,8 @@ export class Equipe {
     console.log(`===== Rapport de l'équipe : ${rapport.nom} =====`);
     console.log(`Membres : ${rapport.nombreMembres}`);
     console.log(`PV totaux : ${rapport.pvTotaux}/${rapport.pvMaxTotaux}`);
-    console.log(`Santé globale : ${rapport.santeGlobale}%`);
-    console.log(`Santé moyenne : ${rapport.santeMoyenne}%`);
+    console.log(`Santé globale : ${rapport.santeGlobale.toFixed(1)}%`);
+    console.log(`Santé moyenne : ${rapport.santeMoyenne.toFixed(1)}%`);
     console.log(`Personnages blessés : ${nomsBlesses}`);
   }
 }
