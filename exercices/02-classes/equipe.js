@@ -81,17 +81,30 @@ export class Equipe {
     }
   }
 
-  afficherRapport() {
+  genererRapport(){
     const blesses = this.trouverBlesses();
-    const nomsBlesses = blesses.length > 0
-      ? blesses.map(personnage => personnage.nom).join(", ")
-      : "aucun";
 
-    console.log(`===== Rapport de l'équipe : ${this.nom} =====`);
-    console.log(`Membres : ${this.membres.length}`);
-    console.log(`PV totaux : ${this.calculerPvTotaux()}/${this.calculerPvMaxTotaux()}`);
-    console.log(`Santé globale : ${this.calculerSanteGlobale().toFixed(1)}%`);
-    console.log(`Santé moyenne : ${this.calculerSanteMoyenne().toFixed(1)}%`);
+    return {
+      nom: this.nom,
+      nombreMembres: this.membres.length,
+      pvTotaux: this.calculerPvTotaux(),
+      pvMaxTotaux: this.calculerPvMaxTotaux(),
+      santeGlobale: this.calculerSanteGlobale(),
+      santeMoyenne: this.calculerSanteMoyenne(),
+      blesses: blesses.map(personnage => personnage.nom)
+    };
+  }
+
+  afficherRapport() {
+    const rapport = this.genererRapport();
+    const nomsBlesses = rapport.blesses.length > 0
+    ? rapport.blesses.join(", ")
+    : "aucun";
+    console.log(`===== Rapport de l'équipe : ${rapport.nom} =====`);
+    console.log(`Membres : ${rapport.nombreMembres}`);
+    console.log(`PV totaux : ${rapport.pvTotaux}/${rapport.pvMaxTotaux}`);
+    console.log(`Santé globale : ${rapport.santeGlobale}%`);
+    console.log(`Santé moyenne : ${rapport.santeMoyenne}%`);
     console.log(`Personnages blessés : ${nomsBlesses}`);
   }
 }
