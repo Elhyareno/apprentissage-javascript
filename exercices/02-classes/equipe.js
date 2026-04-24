@@ -91,7 +91,8 @@ export class Equipe {
       pvMaxTotaux: this.calculerPvMaxTotaux(),
       santeGlobale: this.calculerSanteGlobale(),
       santeMoyenne: this.calculerSanteMoyenne(),
-      blesses: blesses.map(personnage => personnage.nom)
+      blesses: blesses.map(personnage => personnage.nom),
+      membres: this.membres.map(personnage => personnage.creerResume())
     };
   }
 
